@@ -16,15 +16,15 @@ class Student:
         return self.login
 
 def partition(stud_list, low, high):
-    i = low - 1
+    # print(f' patition low-{low}, high {high}')
+    i = low
     pivot: Student = stud_list[high]
     for j in range(low, high):
-        # print(stud_list[j])
         if stud_list[j] <= pivot:
-            i += 1
             stud_list[i], stud_list[j] = stud_list[j], stud_list[i]
-    stud_list[i+1], stud_list[high] = stud_list[high], stud_list[i+1]
-    return i + 1
+            i += 1
+    stud_list[i], stud_list[high] = stud_list[high], stud_list[i]
+    return i
 
 
 def quicksort_inplace(student_list, low: int = 0, high: int = None):
@@ -32,10 +32,11 @@ def quicksort_inplace(student_list, low: int = 0, high: int = None):
     if high is None:
         high = len(student_list) - 1
     if low < high:
+        # print(f'if low < high:')
         pivot_index = partition(student_list, low, high)
         quicksort_inplace(student_list, low, pivot_index - 1)
         quicksort_inplace(student_list, pivot_index, high)
-
+    return student_list
 
 def read_input():
     count_student = int(input())
@@ -51,9 +52,10 @@ def read_input():
 
 def main():
     student_list = read_input()
-    quicksort_inplace(student_list)
+    sort_stud_list = quicksort_inplace(student_list)
     # [print(st.login) for st in student_list]
-    print(*student_list, sep='\n')
+     
+    print(*sort_stud_list, sep='\n')
 
 if __name__ == '__main__':
     main()
