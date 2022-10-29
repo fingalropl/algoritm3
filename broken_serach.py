@@ -1,4 +1,4 @@
-# 73152337
+#
 def broken_search(nums, searchable):
     left = 0
     right = len(nums) - 1
@@ -6,7 +6,7 @@ def broken_search(nums, searchable):
         mid = (left + right) // 2
         if searchable == nums[mid]:
             return mid
-        if nums[mid] <= nums[right]:
+        elif nums[mid] <= nums[right]:
             if nums[mid] < searchable <= nums[right]:
                 left = mid + 1
             else:
